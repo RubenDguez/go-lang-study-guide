@@ -23,6 +23,16 @@ func main() {
 		time.Now(),
 	)
 
-	fmt.Println(unknown)
-	fmt.Println(ruben)
+	fmt.Printf("%+v\n", *unknown)
+	fmt.Printf("%+v\n", *ruben)
+	ruben.Deactivate()
+	fmt.Printf("%+v\n", *ruben)
+
+	_, err := ruben.Deactivate()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("User deactivated")
+		fmt.Printf("%+v\n", *ruben)
+	}
 }
