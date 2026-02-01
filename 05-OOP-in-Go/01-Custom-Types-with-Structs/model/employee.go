@@ -5,6 +5,9 @@ import (
 	"time"
 )
 
+var EmployeeErrorNilRef = errors.New("nil reference")
+var EmployeeErrorInactive = errors.New("employee already inactive")
+
 type Employee struct {
 	id        int
 	firstName string
@@ -41,10 +44,22 @@ func (e Employee) Create(id int, firstName string, lastName string, position str
 	return &e
 }
 
+func (e *Employee) GetFullName() (fullName string, err error) {
+	if e == nil {
+		return "", EmployeeErrorNilRef
+	}
+
+	fullName = e.firstName + " " + e.lastName
+	return
+}
+
 // Reference receiver
 func (e *Employee) Deactivate() (success bool, err error) {
+	if e == nil {
+		return false, EmployeeErrorNilRef
+	}
 	if e.isActive == false {
-		return false, errors.New("employee already inactive")
+		return false, EmployeeErrorInactive
 	}
 
 	e.isActive = false;

@@ -35,4 +35,6 @@ func main() {
 		fmt.Println("User deactivated")
 		fmt.Printf("%+v\n", *ruben)
 	}
+
+	fmt.Println(ruben.GetFullName())
 }
