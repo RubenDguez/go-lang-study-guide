@@ -13,7 +13,7 @@ type IPrintEmployees interface {
 }
 
 var salariedEmployees = make([]Employees.Salaried, 0)
-var commisionEmployees = make([]Employees.Commission, 0)
+var commissionEmployees = make([]Employees.Commission, 0)
 var hourlyEmployees = make([]Employees.Hourly, 0)
 
 func PrintEmployees[T IPrintEmployees](emps []T) (total float64) {
@@ -43,7 +43,7 @@ func main() {
 		Sales:          80000.00,
 		CommissionRate: 0.05,
 	}
-	commisionEmployees = append(commisionEmployees, lisa)
+	commissionEmployees = append(commissionEmployees, lisa)
 
 	alex := Employees.Hourly{
 		Name:        "Alexander Ramhit",
@@ -57,7 +57,7 @@ func main() {
 
 	fmt.Println()
 	payroll += PrintEmployees(salariedEmployees)
-	payroll += PrintEmployees(commisionEmployees)
+	payroll += PrintEmployees(commissionEmployees)
 	payroll += PrintEmployees(hourlyEmployees)
 
 	fmt.Printf("\nTotal Payroll: $%.2f\n", payroll)
